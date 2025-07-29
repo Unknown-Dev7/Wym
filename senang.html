@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mood Sedih</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div id="mood-card" class="card">
+      <h2 class="title">My Mood Right Now</h2>
+      <div class="mood-option" style="font-size: 60px;">
+<img src="img/senang.png" alt="Senang" class="mood-icon" />
+</div>
+      <div class="mood-text" style="margin-bottom: 20px;">Senang</div>
+
+      <textarea id="user-thought" placeholder="Apa yang kamu pikirin?"></textarea>
+
+      <button id="download-btn">Download gambar untuk dibagikan ke WhatsApp</button>
+
+      <div class="watermark">*Bikin seperti ini? Hanya di <strong>domainkamu.com</strong>*</div>
+    </div>
+
+    <div class="bawah">
+      <a href="https://saweria.co/FrDev" class="donasi" target="_blank">☕ Donasi via Saweria</a>
+      <footer>
+        <p>© 2025 - FrDev ☕</p>
+      </footer>
+    </div>
+  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+  document.getElementById('download-btn').addEventListener('click', () => {
+    const thought = document.getElementById('user-thought').value;
+    if (thought.trim() !== "") {
+      const watermark = document.querySelector('.watermark');
+      watermark.style.display = "block";
+    }
+
+    html2canvas(document.getElementById("mood-card")).then(canvas => {
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "mood-sedih.png";
+      link.click();
+    });
+  });
+</script>
+</body>
+</html>
